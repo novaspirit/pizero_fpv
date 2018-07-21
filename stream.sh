@@ -1,0 +1,1 @@
+raspivid -t 0 -rot 270 -w 640 -h 360 -fps 30 -b 1700000 -o - | gst-launch-1.0 -v fdsrc !  'video/x-h264,width=640,height=360'  ! h264parse ! queue ! rtph264pay config-interval=1 pt=96 ! gdppay ! udpsink host = 192.168.43.1 port=9000
